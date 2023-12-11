@@ -34,7 +34,7 @@ outputs:
 
 runs:
   using: node16
-  main: "dist/restore/index.js"
+  main: "../dist/restore/index.js"
 branding:
   icon: "archive"
   color: "gray-dark"
