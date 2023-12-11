@@ -48,6 +48,11 @@ jobs:
         run: yarn ts-jest -v
 ```
 
+## TODO
+
+- [ ] fallback key management
+- [ ] check cache content (all restored files hash) to see if cache has to be reuploaded
+
 ## Changes from upstream
 
 Add standalone restore/save sub-actions in order to avoid the [random post-steps order issue](https://github.com/actions/runner/issues/1657).
