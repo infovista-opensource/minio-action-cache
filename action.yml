@@ -27,6 +27,9 @@ inputs:
   key:
     description: "An explicit key for restoring and saving the cache"
     required: true
+  fallback-key:
+    description: "Fallback key for restoring the cache"
+    required: false
 
 outputs:
   cache-hit:
