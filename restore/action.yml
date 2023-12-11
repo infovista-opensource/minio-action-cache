@@ -1,4 +1,4 @@
-name: "Minio Action Cache"
+name: "Minio Action Cache Downloader"
 author: Infovista
 description: "S3 actions cache with actions/cache@v2 passthrough"
 inputs:
@@ -25,7 +25,7 @@ inputs:
     description: "A list of files, directories, and wildcard patterns to cache and restore"
     required: true
   key:
-    description: "An explicit key for restoring and saving the cache"
+    description: "An explicit key for restoring the cache"
     required: true
 
 outputs:
@@ -35,8 +35,6 @@ outputs:
 runs:
   using: node16
   main: "dist/restore/index.js"
-  post: "dist/save/index.js"
-  post-if: "success()"
 branding:
   icon: "archive"
   color: "gray-dark"

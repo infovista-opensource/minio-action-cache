@@ -1,12 +1,12 @@
-# minio-cache
+# minio-action-cache
 
-This action allows to cache your dependencies stored in Minio (or other S3 compatible source).
+This action allows to cache your dependencies in Minio (or other S3-compatible service).
 
-Self-hosted runners supported
+Self-hosted runners supported and encouraged.
 
 ## Usage
 
-1. Instal and run https://min.io server
+1. Deploy a https://min.io server
 
 2. Create `.github/workflows/my-cachable-workflow.yml` file
 
@@ -24,15 +24,14 @@ jobs:
   dependencies:
     runs-on: [self-hosted]
     steps:
-      - uses: actions/checkout@v2
-
+      - uses: actions/checkout@v3
       - name: Restore yarn cache
         id: cache
-        uses: whalemare/minio-cache
+        uses: infovista-opensource/minio-action-cache@main
         with:
-          endpoint: "192.168.1.63" # optional, default s3.amazonaws.com
-          port: 9000 # minio port
-          insecure: true # optional, use http instead of https. default false
+          endpoint: 'onpremcache.domain.com' # optional, default s3.amazonaws.com
+          port: 443 # minio port
+          insecure: false # optional, use http instead of https. default false
           accessKey: "minioadmin" # required
           secretKey: "minioadmin" # required
           bucket: "bucket-name" # required
@@ -48,3 +47,7 @@ jobs:
       - name: Check that dependency installed
         run: yarn ts-jest -v
 ```
+
+## Changes from upstream
+
+Add standalone restore/save sub-actions in order to avoid the [random post-steps order issue](https://github.com/actions/runner/issues/1657).
